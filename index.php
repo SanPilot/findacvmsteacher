@@ -186,7 +186,7 @@ if(isset($_GET['ajax'])) {
 						$("#search").css("backgroundImage","url(/static/ui/loader.gif)");
 					},
 					error:function() {
-						$("#search").val("An error occurred! Please try again.");
+						$("#search").val("Unfortunetly, we are currently experiencing technical difficulties. We are working to fix this issue.");
 						$("#search").select();
 						$("#search").css("backgroundImage","none");
 					},
