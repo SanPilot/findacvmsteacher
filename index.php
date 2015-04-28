@@ -146,7 +146,7 @@ if(isset($_GET['ajax'])) {
 			<span id="departmentChair" style="display: block; padding: 0px 0px 18px 18px; font-family: Open Sans; font-size: 19px;"></span>
 		</div>
 		<span style="display: block; margin-top: 15px; text-align: center; font-family: Open Sans; font-size: 14px; margin-bottom: 15px; color: #636363">
-			Find A CVMS Teacher &#183; Made By Hussain Khalil &#183; Powered By <a href="https://www.pythne.tk" style="color: #636363">Pythne</a> &#183; Made Using <a href="http://simplehtmldom.sourceforge.net/" style="color: #636363">Simple HTML DOM</a> &#183; Results Parsed From <a href="http://cv.sduhsd.net/staff/" style="color: #636363">CVMS Website</a><noscript> &#183; <b><a href="http://www.enable-javascript.com/" target="_blank" style="color: #636363">JavaScript Is Required For This Site</a></b></noscript>
+			Find A CVMS Teacher &#183; Made By Hussain Khalil &#183; Powered By <a href="https://www.pythne.tk" style="color: #636363">Pythne</a> &#183; Made Using <a href="http://simplehtmldom.sourceforge.net/" style="color: #636363">Simple HTML DOM</a> &#183; Results Parsed From <a href="http://cv.sduhsd.net/staff/" style="color: #636363">CVMS Website</a> &#183; <a href="https://github.com/SanPilot/findacvmsteacher" target="_blank" style="color: #636363">Fork Me On GitHub</a><noscript> &#183; <b><a href="http://www.enable-javascript.com/" target="_blank" style="color: #636363">JavaScript Is Required For This Site</a></b></noscript>
 		</span>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
