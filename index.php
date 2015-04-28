@@ -147,7 +147,7 @@ if(isset($_GET['ajax'])) {
 		</div>
 		<span style="display: block; margin-top: 15px; text-align: center; font-family: Open Sans; font-size: 14px; margin-bottom: 15px; color: #636363">
 			Find A CVMS Teacher &#183;
-			Made By Hussain Khalil &#183;
+			<a href="https://www.hussain.cf" style="color: #636363">Copyright &copy; 2015 Hussain Khalil</a> &#183;
 			Powered By <a href="https://www.pythne.tk" style="color: #636363">Pythne</a> &#183;
 			Made Using <a href="http://simplehtmldom.sourceforge.net/" style="color: #636363">Simple HTML DOM</a> &#183;
 			Results Parsed From <a href="http://cv.sduhsd.net/staff/" style="color: #636363">CVMS Website</a> &#183;
