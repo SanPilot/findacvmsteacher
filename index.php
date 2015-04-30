@@ -1,6 +1,8 @@
 <?php
 include "scripts/php/simple_html_dom.php";
 function findTeachers($mobile) {
+	echo file_get_contents("http://cv.sduhsd.net/staff/");
+	exit();
 	$html = file_get_html('http://cv.sduhsd.net/staff/');
 	$rows = $html->find("#sites-canvas-main-content table tbody tr td div center table tbody tr");
 	$count = count($rows);
