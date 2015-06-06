@@ -86,6 +86,9 @@ if(isset($_GET['ajax'])) {
 				-moz-box-shadow: -1px 1px 5px 0px rgba(50, 50, 50, 0.2);
 				box-shadow: -1px 1px 5px 0px rgba(50, 50, 50, 0.2);
 				transition: box-shadow 0.2s;
+				position: fixed;
+				width: 100%;
+				top: 0px;
 			}
 			#searchBar:hover {
 				-webkit-box-shadow: -1px 1px 3px 0px rgba(50, 50, 50, 0.1);
@@ -100,7 +103,7 @@ if(isset($_GET['ajax'])) {
 				box-sizing: border-box;
 			}
 			#results {
-				margin: 20px 18px;
+				margin: 86px 18px;
 				-webkit-box-shadow: -1px 1px 5px 0px rgba(50, 50, 50, 0.2);
 				-moz-box-shadow: -1px 1px 5px 0px rgba(50, 50, 50, 0.2);
 				box-shadow: -1px 1px 5px 0px rgba(50, 50, 50, 0.2);
