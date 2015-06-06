@@ -12,12 +12,20 @@ function findTeachers($mobile) {
 			foreach($element->find("td") as $td) {
 				if(strstr($td->plaintext,"Email")) {
 					$email = $td->find("a");
-					$email = $email[0]->href;
-					$returnArray[] = $email;
+					if(count($url) > 0) {
+						$email = $email[0]->href;
+						$returnArray[] = $email;
+					} else {
+						$returnArray[] = "";
+					}
 				} elseif(strstr($td->plaintext,"Website")) {
 					$url = $td->find("a");
-					$url = $url[0]->href;
-					$returnArray[] = $url;
+					if(count($url) > 0) {
+						$url = $url[0]->href;
+						$returnArray[] = $url;
+					} else {
+						$returnArray[] = "";
+					}
 				} else {
 					$trimmed = $td->plaintext;
 					$returnArray[] = $trimmed;
