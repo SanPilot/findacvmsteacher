@@ -197,27 +197,34 @@ if(isset($_GET['ajax'])) {
 				if(mobile()) {
 					ajaxURL += "&mobile";
 				}
-				$.ajax(ajaxURL, {
-					beforeSend:function() {
-						$("#search").css("backgroundImage","url(/static/ui/loader.gif)");
-					},
-					error:function() {
-						$("#search").val("An error occurred! Please try again.");
-						$("#search").select();
-						$("#search").css("backgroundImage","none");
-					},
-					success:function(result) {
-						teachers = JSON.parse(result);
-						$.each(teachers,function(key,val) {
-							draw(val);
-						});
-						$("#departmentChair").html("<b>** Department Chair Memeber</b>");
-						$("#header").html("<th>Teacher</th><th>Subject</th><th>Email</th><th>Website</th>");
-						$("#results").css("display","block");
-						$("#search").css("background-image","none");
-					},
-					timeout:5000
-				});
+				var ajax = function(attempt) {
+					$.ajax(ajaxURL, {
+						beforeSend:function() {
+							$("#search").css("backgroundImage","url(/static/ui/loader.gif)");
+						},
+						error:function() {
+							if(attempt < 3) {
+								ajax(++attempt)
+							} else {
+								$("#search").val("An error occurred! Please try again.");
+								$("#search").select();
+								$("#search").css("backgroundImage","none");
+							}
+						},
+						success:function(result) {
+							teachers = JSON.parse(result);
+							$.each(teachers,function(key,val) {
+								draw(val);
+							});
+							$("#departmentChair").html("<b>** Department Chair Memeber</b>");
+							$("#header").html("<th>Teacher</th><th>Subject</th><th>Email</th><th>Website</th>");
+							$("#results").css("display","block");
+							$("#search").css("background-image","none");
+						},
+						timeout:5000
+					});
+				}
+				ajax(0);
 				var last = "";
 				var falsesearch = false;
 				$("#search").keyup(function() {
