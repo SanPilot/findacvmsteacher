@@ -103,7 +103,7 @@ if(isset($_GET['ajax'])) {
 				box-sizing: border-box;
 			}
 			#results {
-				margin: 86px 18px;
+				margin: 86px 18px -71px 18px;
 				-webkit-box-shadow: -1px 1px 5px 0px rgba(50, 50, 50, 0.2);
 				-moz-box-shadow: -1px 1px 5px 0px rgba(50, 50, 50, 0.2);
 				box-shadow: -1px 1px 5px 0px rgba(50, 50, 50, 0.2);
@@ -155,7 +155,7 @@ if(isset($_GET['ajax'])) {
 			</table>
 			<span id="departmentChair" style="display: block; padding: 0px 0px 18px 18px; font-family: Open Sans; font-size: 19px;"></span>
 		</div>
-		<span style="display: block; margin-top: 15px; text-align: center; font-family: Open Sans; font-size: 14px; margin-bottom: 15px; color: #636363">
+		<span style="display: block; margin-top: 87px; text-align: center; font-family: Open Sans; font-size: 14px; margin-bottom: 15px; color: #636363">
 			Find A CVMS Teacher &#183;
 			<a href="https://hussain.cf" style="color: #636363">Copyright &copy; 2015 Hussain Khalil</a> &#183;
 			Powered By <a href="https://www.pythne.tk" style="color: #636363">Pythne</a> &#183;
