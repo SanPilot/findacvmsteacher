@@ -12,7 +12,7 @@ function findTeachers($mobile) {
 			foreach($element->find("td") as $td) {
 				if(strstr($td->plaintext,"Email")) {
 					$email = $td->find("a");
-					if(count($url) > 0) {
+					if(count($email) > 0) {
 						$email = $email[0]->href;
 						$returnArray[] = $email;
 					} else {
