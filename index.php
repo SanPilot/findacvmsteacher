@@ -66,7 +66,7 @@ if(isset($_GET['ajax'])) {
 		<title>
 			Find A CVMS Teacher
 		</title>
-		<link href='https://fonts.googleapis.com/css?family=Ubuntu:500|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Ubuntu:500,700|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 		<style type="text/css">
 			body {
 				background-color: #CCCCCC;
