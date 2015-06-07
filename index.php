@@ -70,7 +70,7 @@ if(isset($_GET['ajax'])) {
 		<title>
 			Find A CVMS Teacher
 		</title>
-		<link href='https://fonts.googleapis.com/css?family=Ubuntu:500,700|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Ubuntu:500|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 		<style type="text/css">
 			body {
 				background-color: #CCCCCC;
@@ -94,11 +94,6 @@ if(isset($_GET['ajax'])) {
 				width: 100%;
 				top: 0px;
 			}
-			#searchBar:hover {
-				-webkit-box-shadow: -1px 1px 3px 0px rgba(50, 50, 50, 0.1);
-				-moz-box-shadow: -1px 1px 3px 0px rgba(50, 50, 50, 0.1);
-				box-shadow: -1px 1px 3px 0px rgba(50, 50, 50, 0.1);
-			}
 			input {
 				outline: none;
 				border: none;
@@ -114,10 +109,9 @@ if(isset($_GET['ajax'])) {
 				transition: box-shadow 0.2s;
 				border-radius: 2px;
 			}
-			#results:hover {
-				-webkit-box-shadow: -1px 1px 3px 0px rgba(50, 50, 50, 0.1);
-				-moz-box-shadow: -1px 1px 3px 0px rgba(50, 50, 50, 0.1);
-				box-shadow: -1px 1px 3px 0px rgba(50, 50, 50, 0.1);
+			#departmentChair {
+				font-weight: 700;
+				margin-top: 10px;
 			}
 			#table {
 				width: 100%;
@@ -138,6 +132,7 @@ if(isset($_GET['ajax'])) {
 				font-size: 20px;
 				text-align: left;
 				color: #141414;
+				font-weight: 500;
 			}
 			td {
 				font-family: Open Sans;
@@ -230,7 +225,7 @@ if(isset($_GET['ajax'])) {
 							$.each(teachers,function(key,val) {
 								draw(val);
 							});
-							$("#departmentChair").html("<b>** Department Chair Memeber</b>");
+							$("#departmentChair").html("** Department Chair Memeber");
 							$("#header").html("<th>Teacher</th><th>Subject</th><th>Email</th><th>Website</th>");
 							$("#results").css("display","block");
 							$("#search").css("background-image","none");
