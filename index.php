@@ -111,7 +111,7 @@ if(isset($_GET['ajax'])) {
 			}
 			#departmentChair {
 				font-weight: 700;
-				margin-top: 10px;
+				margin-top: 5px;
 			}
 			#table {
 				width: 100%;
