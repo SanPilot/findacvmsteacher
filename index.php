@@ -147,7 +147,7 @@ if(isset($_GET['ajax'])) {
 	</head>
 	<body>
 		<div id="searchBar">
-			<input type="text" id="search" placeholder="Search for a teacher by name or subject..." autofocus autocomplete="off">
+			<input type="text" id="search" autofocus autocomplete="off">
 		</div>
 		<div id="results">
 			<table id="table">
@@ -195,7 +195,10 @@ if(isset($_GET['ajax'])) {
 			$(document).ready(function() {
 				var ajaxURL = "/?ajax";
 				if(mobile()) {
+					$("#search").attr("placeholder","Name or subject...");
 					ajaxURL += "&mobile";
+				} else {
+					$("#search").attr("placeholder","Search for a teacher by name or subject...");
 				}
 				var ajax = function(attempt) {
 					$.ajax(ajaxURL, {
