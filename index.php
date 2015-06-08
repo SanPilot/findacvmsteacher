@@ -56,8 +56,10 @@ if(isset($_GET['ajax'])) {
 		}
 		$data = findTeachers();
 		echo $data;
-		rename("static/cache/list","static/cache/list_".time());
-		file_put_contents("static/cache/list",$data);
+		if($data !== file_get_contents("static/cache/list")) {
+			rename("static/cache/list","static/cache/list_old_".date("jFY_g.i.sa"));
+			file_put_contents("static/cache/list",$data);
+		}
 	} else {
 		echo file_get_contents("static/cache/list");
 	}
