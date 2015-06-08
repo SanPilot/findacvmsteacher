@@ -111,10 +111,6 @@ if(isset($_GET['ajax'])) {
 				transition: box-shadow 0.2s;
 				border-radius: 2px;
 			}
-			#departmentChair {
-				font-weight: 700;
-				margin-top: 5px;
-			}
 			#table {
 				width: 100%;
 				padding: 8px 12px;
@@ -154,7 +150,6 @@ if(isset($_GET['ajax'])) {
 			<table id="table">
 				<tr id="header"></tr>
 			</table>
-			<span id="departmentChair" style="display: block; padding: 0px 0px 18px 18px; font-family: Open Sans; font-size: 19px;"></span>
 		</div>
 		<span style="display: block; margin-top: 87px; text-align: center; font-family: Open Sans; font-size: 14px; margin-bottom: 15px; color: #636363">
 			Find A CVMS Teacher &#183;
@@ -227,7 +222,6 @@ if(isset($_GET['ajax'])) {
 							$.each(teachers,function(key,val) {
 								draw(val);
 							});
-							$("#departmentChair").html("** Department Chair Memeber");
 							$("#header").html("<th>Teacher</th><th>Subject</th><th>Email</th><th>Website</th>");
 							$("#results").css("display","block");
 							$("#search").css("background-image","none");
@@ -261,9 +255,6 @@ if(isset($_GET['ajax'])) {
 							});
 							if(index === 0 && !falsesearch) {
 								$("#table").html("<td>No results!</td>");
-								$("#departmentChair").css("display","none");
-							} else {
-								$("#departmentChair").css("display","block");
 							}
 						}
 					} else {
