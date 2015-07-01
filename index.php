@@ -1,7 +1,8 @@
 <?php
 if(isset($_GET['ajax'])) {
+	$gen = false;
 	$yesterday = time() - 86400;
-	if(!file_exists("static/cache/list") || filemtime("static/cache/list") < $yesterday || isset($_GET['gen'])) {
+	if(!file_exists("static/cache/list") || filemtime("static/cache/list") < $yesterday || isset($_GET['gen']) && $gen) {
 		include "scripts/php/simple_html_dom.php";
 		function findTeachers() {
 			$html = file_get_html('http://cv.sduhsd.net/staff/');
