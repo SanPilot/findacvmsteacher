@@ -66,7 +66,8 @@ if(isset($_GET['ajax'])) {
 		<title>
 			Find A CVMS Teacher
 		</title>
-		<link href='https://fonts.googleapis.com/css?family=Ubuntu:500|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Ubuntu:500|Open+Sans:400' rel='stylesheet' type='text/css'>
+		<meta name="description" content="Search through and find CVMS teacher quickly and press enter to visit their websites.">
 		<style type="text/css">
 			body {
 				background-color: #CCCCCC;
@@ -222,6 +223,7 @@ if(isset($_GET['ajax'])) {
 							$("#header").html(headertext);
 							$("#results").css("display","block");
 							$("#search").css("background-image","none");
+							search();
 						},
 						timeout:5000
 					});
@@ -229,7 +231,7 @@ if(isset($_GET['ajax'])) {
 				ajax(0);
 				var last = "";
 				var falsesearch = false;
-				$("#search").keyup(function() {
+				function search() {
 					falsesearch = false;
 					if($("#search").val() !== "") {
 						if($("#search").val() != last) {
@@ -260,6 +262,9 @@ if(isset($_GET['ajax'])) {
 							draw(val);
 						});
 					}
+				};
+				$("#search").keyup(function() {
+					search();
 				});
 			});
 		</script>
