@@ -1,12 +1,14 @@
 <?php
 if(isset($_GET['ajax'])) {
-	$gen = false;
-	$yesterday = time() - 86400;
-	if(!file_exists("static/cache/list") || filemtime("static/cache/list") < $yesterday || isset($_GET['gen']) && $gen) {
+	$gen = true;
+	if($gen) {
+		$gen = !file_exists("static/cache/list") || filemtime("static/cache/list") < time() - 86400 || isset($_GET['gen']);
+	}
+	if($gen) {
 		include "scripts/php/simple_html_dom.php";
 		function findTeachers() {
 			$html = file_get_html('http://cv.sduhsd.net/staff/');
-			$rows = $html->find("#sites-canvas-main-content table tbody tr td div center table tbody tr");
+			$rows = $html->find("div.FW_EDITOR_COLUMN table tbody tr");
 			$count = count($rows);
 			$i = 1;
 			$array = array();
@@ -14,25 +16,19 @@ if(isset($_GET['ajax'])) {
 				$returnArray = array();
 				if($i < $count && $i !== 1) {
 					foreach($element->find("td") as $td) {
-						if(strstr($td->plaintext,"Email")) {
-							$email = $td->find("a");
-							if(count($email) > 0) {
-								$email = $email[0]->href;
-								$returnArray[] = $email;
+						if(!strstr($td->plaintext,"Email")) {
+							if(strstr($td->plaintext,"Website")) {
+								$url = $td->find("a");
+								if(count($url) > 0) {
+									$url = $url[0]->href;
+									$returnArray[] = $url;
+								} else {
+									$returnArray[] = "";
+								}
 							} else {
-								$returnArray[] = "";
+								$trimmed = $td->plaintext;
+								$returnArray[] = $trimmed;
 							}
-						} elseif(strstr($td->plaintext,"Website")) {
-							$url = $td->find("a");
-							if(count($url) > 0) {
-								$url = $url[0]->href;
-								$returnArray[] = $url;
-							} else {
-								$returnArray[] = "";
-							}
-						} else {
-							$trimmed = $td->plaintext;
-							$returnArray[] = $trimmed;
 						}
 					}
 				}
@@ -44,16 +40,13 @@ if(isset($_GET['ajax'])) {
 			$newArray = array();
 			foreach($array as $row) {
 				$newArrayRow = array();
-				$newArrayRow["Name"] = $row[0];
-				$newArrayRow["Subject"] = $row[1];
-				$newArrayRow["Email"] = $row[2];
-				$newArrayRow["SoftEmail"] = str_replace("mailto:","",$row[2]);
-				$newArrayRow["Website"] = $row[3];
-				$newArrayRow["SoftUrl"] = str_replace(array("https://","http://"),"",$row[3]);
-				$newArray[$row[0]] = $newArrayRow;
+				$newArrayRow[] = $row[0];
+				$newArrayRow[] = $row[1];
+				$newArrayRow[] = $row[2];
+				$newArray[] = $newArrayRow;
 			}
 			$array = $newArray;
-			return str_replace("\\u00a0","",json_encode($array));
+			return str_replace("&nbsp;","",json_encode($array));
 		}
 		$data = findTeachers();
 		echo $data;
@@ -163,11 +156,12 @@ if(isset($_GET['ajax'])) {
 		</span>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
+			var headertext = "<th>Teacher</th><th>Subject</th><th>Website</th><th>Email</th>";
 			function stripSlashes(str) {
 				return str.replace(/^\W+$/, "").replace(/\\/g, "");
 			}
 			function findFirst() {
-				if($("tr").length > 1) {
+				if($("tr").length > 1 && $(".site > a").eq(0).attr("href").match(/\w/)) {
 					window.location = $(".site > a").eq(0).attr("href");
 				}
 			}
@@ -185,16 +179,18 @@ if(isset($_GET['ajax'])) {
 				ismobile = false;
 			}
 			function draw(obj) {
-				var softurl;
+				var softurl, email;
 				if(ismobile) {
 					softurl = "Website";
 				} else {
-					softurl = obj.SoftUrl;
+					softurl = obj[2].replace(/http[s]:\/\//, "");
 				}
-				$("#table").html($("#table").html()+"<tr><td>"+obj.Name+"</td><td>"+obj.Subject+"</td><td><a href='"+obj.Email+"'>"+obj.SoftEmail+"</a></td><td class='site'><a href='"+obj.Website+"'>"+softurl+"</a></td></tr>");
+				email = obj[0].match(/^(\w+)\W\s*(\w+)\W*\w*\W*$/);
+				email = email[2].toLowerCase()+"."+email[1].toLowerCase()+"@sduhsd.net";
+				$("#table").html($("#table").html()+"<tr><td>"+obj[0]+"</td><td>"+obj[1]+"</td><td class='site'><a href='"+obj[2]+"'>"+softurl+"</a></td><td><a href='mailto:"+email+"'>"+email+"</a></td></tr>");
 			}
 			function clear() {
-				$("#table").html("<tr><th>Teacher</th><th>Subject</th><th>Email</th><th>Website</th></tr>");
+				$("#table").html("<tr>"+headertext+"<tr>");
 			}
 			$("#search").on('keyup',function(event) {
 				var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -223,7 +219,7 @@ if(isset($_GET['ajax'])) {
 							$.each(teachers,function(key,val) {
 								draw(val);
 							});
-							$("#header").html("<th>Teacher</th><th>Subject</th><th>Email</th><th>Website</th>");
+							$("#header").html(headertext);
 							$("#results").css("display","block");
 							$("#search").css("background-image","none");
 						},
@@ -249,7 +245,7 @@ if(isset($_GET['ajax'])) {
 									falsesearch = true;
 									return false;
 								}
-								if(val.Name.toLowerCase().search(last.toLowerCase()) != -1 || val.Subject.toLowerCase().search(last.toLowerCase()) != -1) {
+								if(val[0].toLowerCase().search(last.toLowerCase()) != -1 || val[1].toLowerCase().search(last.toLowerCase()) != -1) {
 									draw(val);
 									index++;
 								}
