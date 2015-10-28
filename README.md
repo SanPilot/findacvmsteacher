@@ -16,7 +16,7 @@ You can find more details at [https://guides.github.com/activities/contributing-
 
 If you are a common contributor, email me at [hussainpilot05@gmail.com](mailto:hussainpilot05@gmail.com), and I may add you as a contributor!
 # Licence
-Find A CVMS Teacher is LICENSED under the [MIT License](http://opensource.org/licenses/MIT):
+Find A CVMS Teacher is licensed under the [MIT License](http://opensource.org/licenses/MIT):
 
 The MIT License (MIT)
 
