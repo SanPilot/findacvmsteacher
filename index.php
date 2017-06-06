@@ -7,7 +7,7 @@ if(isset($_GET['ajax'])) {
 	if($gen) {
 		include "scripts/php/simple_html_dom.php";
 		function findTeachers() {
-			$html = file_get_html('http://cv.sduhsd.net/staff/');
+			$html = file_get_html('http://cv.sduhsd.net/TEACHER--STAFF/-All-Staff-List-/index.html');
 			$rows = $html->find("div.FW_EDITOR_COLUMN table tbody tr");
 			$count = count($rows);
 			$i = 1;
